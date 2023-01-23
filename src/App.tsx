@@ -1,9 +1,11 @@
+import { MemoryGame } from './components/MemoryGame'
+
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
+      <MemoryGame />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
