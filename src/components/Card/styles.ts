@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { CardProps } from '.'
 
 export const Wrapper = styled.button`
   width: 100%;
@@ -13,10 +14,9 @@ export const Wrapper = styled.button`
     max-width: 100%;
   }
 
-  &:hover {
-    section {
-      transform: rotateY(180deg);
-    }
+  section {
+    transform: ${({ isFlipped }: CardProps) =>
+      isFlipped ? 'rotateY(180deg)' : 'none'};
   }
 `
 

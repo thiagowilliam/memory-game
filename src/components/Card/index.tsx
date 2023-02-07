@@ -1,14 +1,27 @@
+import { useState } from 'react'
+import { useMemoryGame } from '../../hooks/useMemoryGame'
 import * as S from './styles'
 
-interface CardProps {
-  id?: number
-  idImage?: number
+export interface CardProps {
+  id?: any
+  idFace?: any
   image?: string
+  isFlipped?: boolean
 }
 
-export function Card({ id, idImage, image }: CardProps) {
+export function Card({ id, idFace, image }: CardProps) {
+  const { showCard, idsFaceCards } = useMemoryGame()
+  const [isFlipped, setIsFlipped] = useState(false)
+
+  const flipCard = idsFaceCards.map((item: any) => item.id.includes(id))
+
+  const handleCardClick = () => {
+    showCard({ id, idFace })
+    flipCard ? setIsFlipped(true) : setIsFlipped(false)
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper onClick={handleCardClick} isFlipped={isFlipped}>
       <S.Content>
         <S.CardFront></S.CardFront>
         <S.CardBack>
